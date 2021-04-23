@@ -38,3 +38,15 @@ class Walker_Nav_Sub_Menu extends Walker_Nav_Menu {
         $output .= "\n$indent<ul class=\"dropdown-menu bg-white mt-2 border-0 m-0 w-100\">\n";
     }
 }
+
+
+wp_nav_menu(
+                        array(
+                            'theme_location' => 'menu-1',
+                            'menu_id'        => 'primary-menu',
+                            'container_class' => 'collapse navbar-collapse w-100',
+                            'container_id' => 'navbarBoudier',
+                            'menu_class' => 'navbar-nav w-100 d-flex justify-content-between font-weight-bold',
+                            'walker' => new Walker_Nav_Sub_Menu()
+                        )
+                    );
