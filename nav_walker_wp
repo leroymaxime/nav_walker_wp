@@ -40,7 +40,13 @@ class Walker_Nav_Sub_Menu extends Walker_Nav_Menu {
 }
 
 
-wp_nav_menu(
+<div class="col-8 col-md-8 col-lg-9 align-items-center d-flex mt-n4">
+                    <nav id="site-navigation" class="main-navigation navbar navbar-expand-lg navbar-light font-weight-lighter w-100 p-0 justify-content-end">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarBoudier" aria-controls="navbarBoudier" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <?php
+                    wp_nav_menu(
                         array(
                             'theme_location' => 'menu-1',
                             'menu_id'        => 'primary-menu',
@@ -50,3 +56,22 @@ wp_nav_menu(
                             'walker' => new Walker_Nav_Sub_Menu()
                         )
                     );
+                    ?>
+                </nav><!-- #site-navigation -->
+                </div>
+                <div class="col-2 col-lg-1 d-none d-md-flex align-items-center right_header flex-column justify-content-center">
+                    <div class="reseaux_boudier d-flex align-items-center">
+                        <a href="https://www.facebook.com/gabrielboudier">
+                            <img src="<?php echo get_template_directory_uri() ?>/img/facebook.png" alt="Rejoignez-nous sur Facebook">
+                        </a>
+                        <a href="https://twitter.com/GabrielBoudier">
+                            <img src="<?php echo get_template_directory_uri() ?>/img/twitter.png" alt="Suivez-nous sur Twitter">
+                        </a>
+                        <a href="https://www.instagram.com/gabrielboudier/">
+                            <img src="<?php echo get_template_directory_uri() ?>/img/instagram.png" alt="Rejoignez-nous sur instagram">
+                        </a>
+                    </div>
+                    <div class="lang_selector d-flex mt-2">
+	                    <?php language_selector_flags() ?>
+                    </div>
+                </div>
