@@ -1,0 +1,40 @@
+// Ajouter classe a nav > ul > li
+add_filter ( 'nav_menu_css_class', 'so_37823371_menu_item_class', 10, 4 );
+function so_37823371_menu_item_class ( $classes, $item, $args, $depth ){
+    if($args->theme_location == 'menu-1') {
+        $classes[] = 'nav-item text-center position-relative align-items-center d-flex px-1';
+        $hasChildren = (in_array('menu-item-has-children', $item->classes));
+        if ($hasChildren) {
+            $classes[] = "dropdown";
+        }
+        return $classes;
+    }
+}
+
+// Ajouter classe a nav > ul > li > a
+add_filter( 'nav_menu_link_attributes', function($atts, $item, $args, $depth) {
+    if($args->theme_location == 'menu-1') {
+        $atts['class'] = "nav-link text-primary text-uppercase";
+
+        $hasChildren = (in_array('menu-item-has-children', $item->classes));
+        if ($hasChildren) {
+            // add the desired attributes:
+            $atts['role'] = "button";
+            $atts['data-toggle'] = "dropdown";
+            $atts['data-target'] = "#";
+            $atts['aria-haspopup'] = "true";
+            $atts['aria-expanded'] = "false";
+        }
+        return $atts;
+    }
+
+}, 10, 4 );
+
+// Ajouter class a sub-menu
+class Walker_Nav_Sub_Menu extends Walker_Nav_Menu {
+
+    function start_lvl(&$output, $depth = 0, $args = NULL){
+        $indent = str_repeat("\t", $depth);
+        $output .= "\n$indent<ul class=\"dropdown-menu bg-white mt-2 border-0 m-0 w-100\">\n";
+    }
+}
